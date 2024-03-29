@@ -5,7 +5,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/include)
@@ -21,10 +21,9 @@ set(RESOURCES
 
 qt5_add_resources(RESOURCES_RCC ${RESOURCES})
 
-add_library(${PROJECT_NAME} STATIC ${HEADERS_LIST} ${SOURCES_LIST} ${RESOURCES_RCC})
+add_library(${PROJECT_NAME} SHARED ${HEADERS_LIST} ${SOURCES_LIST} ${RESOURCES_RCC})
 target_link_libraries(${PROJECT_NAME}
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Widgets
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Widgets
 )
-
