@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 class QJoystickConan(ConanFile):
     name = "qjoystick"
     version = "1.0.0"
-    url = "https://github.com/alex-spataru/QJoysticks"
+    url = "https://github.com/Pr0meTheuSS/QJoysticks"
     description = "Library for handling joystick input in Qt applications"
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
