@@ -19,7 +19,7 @@ set(RESOURCES
     etc/resources/qjoysticks-res.qrc
 )
 
-qt5_add_resources(RESOURCES_RCC ${RESOURCES})
+qt6_add_resources(RESOURCES_RCC ${RESOURCES})
 
 add_library(${PROJECT_NAME} SHARED ${HEADERS_LIST} ${SOURCES_LIST} ${RESOURCES_RCC})
 target_link_libraries(${PROJECT_NAME}
