@@ -7,8 +7,8 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/include)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
 
 file(GLOB HEADERS_LIST ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
                         ${CMAKE_CURRENT_SOURCE_DIR}/src/*/*.h)

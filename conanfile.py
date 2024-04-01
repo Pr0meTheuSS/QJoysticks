@@ -1,4 +1,5 @@
 from conans import ConanFile, CMake, tools
+from conan.tools.cmake import CMakeDeps
 
 class QJoystickConan(ConanFile):
     name = "qjoystick"
@@ -6,12 +7,16 @@ class QJoystickConan(ConanFile):
     url = "https://github.com/Pr0meTheuSS/QJoysticks"
     description = "Library for handling joystick input in Qt applications"
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake"
-    #source_folder = "."
+    generators = ["cmake", "CMakeDeps"]
     requires = ["cmake/3.29.0", "qt/6.6.2"]
 
     options = {"shared": [True, False]}
     default_options = {"shared": True}
+
+    def generate(self):
+        print("generate")
+        cmake = CMakeDeps(self)
+        cmake.generate()
 
     def source(self):
         print("source")
@@ -37,4 +42,3 @@ class QJoystickConan(ConanFile):
     def package_info(self):
         print("package_info")
         self.cpp_info.libs = ["qjoystick"]
-
