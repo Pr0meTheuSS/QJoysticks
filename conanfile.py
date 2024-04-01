@@ -13,11 +13,6 @@ class QJoystickConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": True}
 
-    def generate(self):
-        print("generate")
-        cmake = CMakeDeps(self)
-        cmake.generate()
-
     def source(self):
         print("source")
         git = tools.Git(folder=self.source_folder)
