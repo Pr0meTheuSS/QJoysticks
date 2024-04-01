@@ -1,14 +1,17 @@
 cmake_minimum_required(VERSION 3.0)
 project(QJoysticks)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
-
 find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/include)
 
 file(GLOB HEADERS_LIST ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
                         ${CMAKE_CURRENT_SOURCE_DIR}/src/*/*.h)
