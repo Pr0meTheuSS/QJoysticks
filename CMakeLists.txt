@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
+cmake_policy(SET CMP0057 NEW)
+
 project(QJoysticks)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
@@ -24,7 +26,7 @@ set(RESOURCES
 
 qt6_add_resources(RESOURCES_RCC ${RESOURCES})
 
-add_library(${PROJECT_NAME} SHARED ${HEADERS_LIST} ${SOURCES_LIST} ${RESOURCES_RCC})
+qt_add_library(${PROJECT_NAME} SHARED ${HEADERS_LIST} ${SOURCES_LIST} ${RESOURCES_RCC})
 target_link_libraries(${PROJECT_NAME}
     Qt6::Core
     Qt6::Gui
