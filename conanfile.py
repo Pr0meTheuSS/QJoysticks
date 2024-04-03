@@ -7,7 +7,7 @@ class QJoystickConan(ConanFile):
     url = "https://github.com/Pr0meTheuSS/QJoysticks"
     description = "Library for handling joystick input in Qt applications"
     settings = "os", "compiler", "build_type", "arch"
-    generators = ["cmake_find_package", "CMakeToolchain"]
+    generators = ["cmake_find_package", "cmake_find_package_multi", "CMakeToolchain"]
     requires = ["cmake/3.29.0", "qt/6.6.1"]
 
     options = {"shared": [True, False]}
@@ -36,4 +36,16 @@ class QJoystickConan(ConanFile):
 
     def package_info(self):
         print("package_info")
-        self.cpp_info.libs = ["qjoystick"]
+        #self.cpp_info.libs = ["QJoysticks", "SDL2"]
+        self.cpp_info.set_property("cmake_file_name", "qjoystick")
+        self.cpp_info.set_property("cmake_find_mode", "both")
+        self.cpp_info.set_property("cmake_target_name", "qjoystick::qjoystick")
+
+        self.cpp_info.components["QJoysticks"].set_property("cmake_target_name", "qjoystick::QJoysticks")
+        self.cpp_info.components["QJoysticks"].libs = ["QJoysticks"]
+        self.cpp_info.components["SDL2"].set_property("cmake_target_name", "qjoystick::SDL2")
+        self.cpp_info.components["SDL2"].libs = ["SDL2"]
+
+        self.cpp_info.names["cmake_find_package"] = "qjoystick"
+        self.cpp_info.names["cmake_find_package_multi"] = "qjoystick"
+
