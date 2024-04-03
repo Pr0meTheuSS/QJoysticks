@@ -7,7 +7,7 @@ class QJoystickConan(ConanFile):
     url = "https://github.com/Pr0meTheuSS/QJoysticks"
     description = "Library for handling joystick input in Qt applications"
     settings = "os", "compiler", "build_type", "arch"
-    generators = ["cmake_paths", "cmake_find_package", "CMakeToolchain"]
+    generators = ["cmake_find_package", "CMakeToolchain"]
     requires = ["cmake/3.29.0", "qt/6.6.1"]
 
     options = {"shared": [True, False]}
