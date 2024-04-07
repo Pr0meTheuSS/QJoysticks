@@ -17,6 +17,7 @@ find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/include)
 
+
 # Явно перечислим исходные файлы
 set(HEADERS_LIST
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
@@ -39,7 +40,7 @@ target_link_libraries(${PROJECT_NAME}
     Qt6::Gui
     Qt6::Widgets
 )
-
+message('try to copy files')
 # Копируем файлы перед установкой библиотеки
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
     DESTINATION include
