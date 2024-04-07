@@ -11,7 +11,7 @@ class QJoystickConan(ConanFile):
     requires = ["cmake/3.29.0", "qt/6.6.1"]
 
     options = {"shared": [True, False]}
-    default_options = {"shared": True}
+    default_options = {"shared": True }
 
     def source(self):
         print("source")
@@ -21,6 +21,7 @@ class QJoystickConan(ConanFile):
     def build(self):
         cmake = CMake(self)
         cmake.configure()
+        cmake.install()
         cmake.build()
 
     def package(self):
@@ -36,7 +37,7 @@ class QJoystickConan(ConanFile):
 
     def package_info(self):
         print("package_info")
-        #self.cpp_info.libs = ["QJoysticks", "SDL2"]
+        # self.cpp_info.libs = ["QJoysticks", "SDL2"]
         self.cpp_info.set_property("cmake_file_name", "qjoystick")
         self.cpp_info.set_property("cmake_find_mode", "both")
         self.cpp_info.set_property("cmake_target_name", "qjoystick::qjoystick")

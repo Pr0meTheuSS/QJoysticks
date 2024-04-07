@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.0)
-# Change to cmake_minimum_required(VERSION that support CMP0057 policy)
-cmake_policy(SET CMP0057 NEW)
+cmake_minimum_required(VERSION 3.22)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 project(QJoysticks)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
@@ -34,3 +34,49 @@ target_link_libraries(${PROJECT_NAME}
     Qt6::Gui
     Qt6::Widgets
 )
+
+if(WIN32)
+    install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
+elseif(APPLE)
+    install(TARGETS ${PROJECT_NAME}
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
+endif()
+
+# Копируем DLL-файлы в зависимости от операционной системы и компилятора
+if(WIN32)
+    # Копирование DLL для сборки с помощью MSVC
+    if(MSVC)
+        # Копирование DLL в зависимости от разрядности архитектуры (86 или 64)
+        if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+            install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/*.dll 
+            DESTINATION bin
+            )
+            install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/*.lib
+                DESTINATION lib
+            )
+        else()
+            install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x86/*.dll 
+                DESTINATION bin
+            )
+            install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x86/*.lib
+                DESTINATION lib
+            )
+        endif()
+    elseif(MINGW)
+        # Копирование DLL для сборки с помощью MinGW
+        install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/mingw/SDL2.dll
+            DESTINATION bin
+        )
+    endif()
+else()
+endif()
+
+# install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/
+#     DESTINATION share/${PROJECT_NAME}
+# )
