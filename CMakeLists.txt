@@ -34,9 +34,9 @@ set(SOURCES_LIST
     "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/VirtualJoystick.cpp"
 )
 
-set(RESOURCES
-    etc/resources/qjoysticks-res.qrc
-)
+# set(RESOURCES
+#     etc/resources/qjoysticks-res.qrc
+# )
 
 qt6_add_resources(RESOURCES_RCC ${RESOURCES})
 
