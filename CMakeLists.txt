@@ -54,7 +54,7 @@ install(FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/Android_Joystick.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/JoysticksCommon.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/SDL_Joysticks.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/VirtualJoysticks.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/VirtualJoystick.h"
     DESTINATION include
 )
 
