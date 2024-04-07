@@ -55,6 +55,10 @@ install(FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/JoysticksCommon.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/SDL_Joysticks.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks/VirtualJoystick.h"
+    DESTINATION include/QJoysticks
+)
+install(FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks.h"
     DESTINATION include
 )
 
