@@ -17,10 +17,15 @@ find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/include)
 
-file(GLOB HEADERS_LIST ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
-                        ${CMAKE_CURRENT_SOURCE_DIR}/src/*/*.h)
-file(GLOB SOURCES_LIST ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
-                        ${CMAKE_CURRENT_SOURCE_DIR}/src/*/*.cpp)
+# Явно перечислим исходные файлы
+set(HEADERS_LIST
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*/*.h
+)
+set(SOURCES_LIST
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*/*.cpp
+)
 
 set(RESOURCES
     etc/resources/qjoysticks-res.qrc
@@ -35,18 +40,10 @@ target_link_libraries(${PROJECT_NAME}
     Qt6::Widgets
 )
 
-if(WIN32)
-    install(TARGETS ${PROJECT_NAME}
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-    )
-elseif(APPLE)
-    install(TARGETS ${PROJECT_NAME}
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-    )
-endif()
+# Копируем файлы перед установкой библиотеки
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
+    DESTINATION include
+)
 
 # Копируем DLL-файлы в зависимости от операционной системы и компилятора
 if(WIN32)
@@ -55,7 +52,7 @@ if(WIN32)
         # Копирование DLL в зависимости от разрядности архитектуры (86 или 64)
         if(CMAKE_SIZEOF_VOID_P EQUAL 8)
             install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/*.dll 
-            DESTINATION bin
+                DESTINATION bin
             )
             install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/*.lib
                 DESTINATION lib
@@ -74,9 +71,17 @@ if(WIN32)
             DESTINATION bin
         )
     endif()
-else()
+elseif(APPLE)
+    # Добавляем инструкции для сборки на macOS
+    install(TARGETS ${PROJECT_NAME}
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
 endif()
 
-# install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/
-#     DESTINATION share/${PROJECT_NAME}
-# )
+# Установка библиотеки
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
