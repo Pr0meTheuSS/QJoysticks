@@ -68,20 +68,24 @@ if(WIN32)
         # Копирование DLL в зависимости от разрядности архитектуры (86 или 64)
         if(CMAKE_SIZEOF_VOID_P EQUAL 8)
             install(FILES
-                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/*.dll"
+                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/SDL2.dll"
                 DESTINATION bin
             )
             install(FILES
-                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/*.lib"
+                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/SDL2.lib"
+                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/SDL2main.lib"
+                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x64/SDL2test.lib"
                 DESTINATION lib
             )
         else()
             install(FILES
-                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x86/*.dll"
+                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x86/SDL2.dll"
                 DESTINATION bin
             )
             install(FILES
-                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x86/*.lib"
+                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x86/SDL2.lib"
+                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x86/SDL2main.lib"
+                "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/windows/msvc/x86/SDL2test.lib"
                 DESTINATION lib
             )
         endif()
