@@ -20,9 +20,9 @@
  * THE SOFTWARE.
  */
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 1.0
+import QtQuick 2.15
+import QtQuick.Layouts 2.15
+import QtQuick.Controls 2.15
 
 ApplicationWindow {
     //
@@ -106,8 +106,8 @@ ApplicationWindow {
                     id: axes
                     delegate: ProgressBar {
                         id: progressbar
-                        minimumValue: -100
-                        maximumValue: 100
+                        from: -100
+                        to: 100
                         Layout.fillWidth: true
 
                         value: 0
@@ -129,7 +129,7 @@ ApplicationWindow {
         // Buttons indicator
         //
         GroupBox {
-            title: qsTr ("Buttons")
+            title: qsTr("Buttons")
             Layout.fillWidth: true
             Layout.fillHeight: true
 
@@ -186,8 +186,8 @@ ApplicationWindow {
                     id: povs
                     delegate: SpinBox {
                         enabled: false
-                        minimumValue: 0
-                        maximumValue: 360
+                        from: 0
+                        to: 360
                         Layout.fillWidth: true
 
                         //
@@ -205,4 +205,4 @@ ApplicationWindow {
             }
         }
     }
-}
+} 

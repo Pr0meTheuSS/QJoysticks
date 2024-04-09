@@ -47,7 +47,6 @@ target_link_libraries(${PROJECT_NAME}
     Qt6::Widgets
 )
 
-message('try to copy files')
 # Копируем файлы перед установкой библиотеки
 install(FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/QJoysticks.h"

@@ -20,10 +20,9 @@
  * THE SOFTWARE.
  */
 
-#include <QPalette>
+#include <iostream>
 #include <QQmlContext>
-#include <QApplication>
-#include <QStyleFactory>
+#include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
 #include <QJoysticks.h>
@@ -34,35 +33,11 @@
 #   endif
 #endif
 
-void configureDarkStyle()
-{
-   qApp->setStyle(QStyleFactory::create("Fusion"));
-   QPalette darkPalette;
-   darkPalette.setColor(QPalette::BrightText, Qt::red);
-   darkPalette.setColor(QPalette::WindowText, Qt::white);
-   darkPalette.setColor(QPalette::ToolTipBase, Qt::white);
-   darkPalette.setColor(QPalette::ToolTipText, Qt::white);
-   darkPalette.setColor(QPalette::Text, Qt::white);
-   darkPalette.setColor(QPalette::ButtonText, Qt::white);
-   darkPalette.setColor(QPalette::HighlightedText, Qt::black);
-   darkPalette.setColor(QPalette::Window, QColor(53, 53, 53));
-   darkPalette.setColor(QPalette::Base, QColor(25, 25, 25));
-   darkPalette.setColor(QPalette::AlternateBase, QColor(53, 53, 53));
-   darkPalette.setColor(QPalette::Button, QColor(53, 53, 53));
-   darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
-   darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-   qApp->setPalette(darkPalette);
-}
 
 int main(int argc, char *argv[])
 {
-   QApplication app(argc, argv);
+   QGuiApplication app(argc, argv);
    QQmlApplicationEngine qmlEngine;
-
-   /*
-    * Make the application use the Fusion style + dark palette
-    */
-   configureDarkStyle();
 
    /*
     * QJoysticks is single instance, you can use the "getInstance()" function
@@ -75,7 +50,7 @@ int main(int argc, char *argv[])
    instance->setVirtualJoystickRange(1);
    instance->setVirtualJoystickEnabled(true);
    instance->setVirtualJoystickAxisSensibility(0.7);
-
+    std::cout << "Axis amount = " + instance->getNumAxes(1) << std::endl;
    /*
     * Register the QJoysticks with the QML engine, so that the QML interface
     * can easilly use it.
