@@ -97,10 +97,15 @@ if(WIN32)
         )
     endif()
 elseif(APPLE)
-    # Добавляем инструкции для сборки на macOS
+    	# Добавляем инструкции для сборки на macOS
+	install(FILES
+  	      "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/mac-osx/libSDL2.a"
+  	      "${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL/bin/mac-osx/License.txt"
+        	DESTINATION lib
+    	)
     install(TARGETS ${PROJECT_NAME}
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
     )
 endif()
 
@@ -110,3 +115,4 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )
+
